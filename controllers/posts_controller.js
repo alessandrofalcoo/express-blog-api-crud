@@ -1,11 +1,23 @@
-const post = require('../data/posts')
+const posts = require('../data/posts')
 
 function index(req, res) {
-    res.send('Posts list')
+    res.json(posts)
 }
 function show(req, res) {
-    res.send('Show a single post with slug of ' + req.params.slug)
+
+    const postSlug = req.params.slug
+    const foundPost = posts.find((thisPost => thisPost.slug === postSlug))
+    if (foundPost) {
+        return res.json(foundPost)
+    } else {
+        return res.status(404).json({
+            error: '404 not found',
+            message: 'Post not found'
+
+        })
+    }
 }
+
 function store(req, res) {
     res.send('Store a new post')
 
