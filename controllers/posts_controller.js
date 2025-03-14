@@ -29,7 +29,17 @@ function modify(req, res) {
     res.send('Modify a post with slug of ' + req.params.slug)
 }
 function destroy(req, res) {
-    res.send('Delete a post with slug of ' + req.params.slug)
+    const postSlug = req.params.slug
+    const index = posts.findIndex((thisPost) => thisPost.slug === postSlug);
+    if (index !== -1) {
+        posts.splice(index, 1);
+        console.log(posts);
+        res.status(204).json({
+            error: '204 no content',
+            message: 'No content'
+        })
+    }
+
 }
 
 module.exports = { index, show, store, update, modify, destroy }
