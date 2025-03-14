@@ -1,5 +1,4 @@
 const post = require('../posts')
-const postsRouter = require('../routers/posts')
 
 function index(req, res) {
     res.send('Posts list')
