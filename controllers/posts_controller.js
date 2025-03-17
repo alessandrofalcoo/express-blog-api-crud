@@ -17,7 +17,6 @@ function show(req, res) {
         })
     }
 }
-
 function store(req, res) {
     console.log(req.body);
     const newPost = {
@@ -36,8 +35,8 @@ function store(req, res) {
 
 }
 function update(req, res) {
-    const slug = req.params.slug
-    const post = posts.find((post => post.slug === slug))
+    const title = req.params.title
+    const post = posts.find((post => post.title === title))
     console.log(post);
 
     if (!post) {
