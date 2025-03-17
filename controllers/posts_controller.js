@@ -20,9 +20,8 @@ function show(req, res) {
 
 function store(req, res) {
     console.log(req.body);
-    const newTitle = posts[posts.length - 1].id + 1;
     const newPost = {
-        title: newTitle,
+        title: req.body.title,
         slug: req.body.slug,
         content: req.body.content,
         image: req.body.image,
