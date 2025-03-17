@@ -19,7 +19,21 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    res.send('Store a new post')
+    console.log(req.body);
+    const newTitle = posts[posts.length - 1].id + 1;
+    const newPost = {
+        title: newTitle,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    posts.push(newPost);
+    console.log(posts);
+
+    res.status(201);
+    res.json(newPost);
 
 }
 function update(req, res) {
