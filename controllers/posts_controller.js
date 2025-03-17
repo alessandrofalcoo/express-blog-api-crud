@@ -1,7 +1,18 @@
 const posts = require('../data/posts')
 
 function index(req, res) {
-    res.json(posts)
+    const tag = req.params.tags
+    const filteredPost = posts.filter((thisPost) => thisPost.tags === tag)
+    if (!tag) {
+        return res.status(404).json({
+            error: "404 not found",
+            message: "Tag not found"
+        })
+    } else {
+        res.json(filteredPost)
+
+    }
+    console.log(filteredPost);
 }
 function show(req, res) {
 
@@ -47,13 +58,13 @@ function update(req, res) {
         })
     }
 
-post.title = req.body.title;
-post.slug = req.body.slug;
-post.content = req.body.content;
-post.image = req.body.image;
-post.tags = req.body.tags;
-console.log(posts)
-res.json(post);
+    post.title = req.body.title;
+    post.slug = req.body.slug;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+    console.log(posts)
+    res.json(post);
 }
 function modify(req, res) {
     res.send('Modify a post with slug of ' + req.params.slug)
